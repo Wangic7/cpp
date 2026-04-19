@@ -1,0 +1,59 @@
+1.if（逻辑表达式）
+{
+    语句体1；	
+}
+ else
+{
+    语句体2；
+ }
+
+
+2.whlie（）
+{
+    
+}
+
+
+3.for（初始化；逻辑表达式；更改条件）
+{
+    循环体
+}
+
+4.
+switch（变量）
+{
+    case  常量1；语句体1；break；
+    case  常量2；语句体2；break；
+    （...）
+    default：语句体x；break；
+}
+
+
+变量：
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a = 10;
+
+	cout << "a = "<<a << endl;
+	/*
+	多行注释
+	*/
+	system("pause");
+
+	return 0;
+}
+/*
+变量存在的意义：方便管理内存
+变量创建的语法: 数据类型 变量名 = 变量初始值;
+                    int a = 10;
+*/
+
+
+
+常量：用于记录程序中不可更改的数据
+1.#define宏常量：#define 常量名 常量值//通常在文件上方定义，表示一个常量
+2.const修饰的变量：const 数据类型 常量名 = 常量值//通常在变量定义前加关键字const，修饰该变量为常量，不可修改
+
