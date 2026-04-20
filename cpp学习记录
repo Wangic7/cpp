@@ -261,4 +261,83 @@ if (条件1){条件1满足执行的语句} else if (条件2){条件2满足执行
 	}
 ////////////哈哈哈红红火火恍恍惚惚
 
-3.
+3.嵌套if
+int score = 0;
+cout << "请输入您的分数： " << endl;
+cin >> score;
+
+cout << "您输入的分数为：" << score << endl;
+if (score >= 600)
+{
+	cout << "恭喜您考上一本！" << endl;
+	if (score >= 700)
+	{
+		cout << "您能上清华！" << endl;
+	}
+	else if (score >= 650)
+	{
+	    cout << "您能上电子科技大学！" << endl;
+	}
+	else
+	{
+		cout << "您能上福州大学！" << endl;
+	}
+}
+	else if (score >= 500) 
+{
+	cout << "恭喜您考上二本" << endl;
+}
+	else if (score >= 100) 
+{
+	cout << "继续加油！" << endl;
+}
+	else
+{
+	cout << "你废了！！！" << endl;
+}
+
+练习：比较三只小猪体重
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int num1 = 0;
+	int num2 = 0;
+	int num3 = 0;
+
+	cout << "请输入小猪A的体重： " << endl;
+	cin >> num1;
+	cout << "请输入小猪B的体重： " << endl;
+	cin >> num2;
+	cout << "请输入小猪C的体重： " << endl;
+	cin >> num3;
+
+	cout << "小猪A的体重为： " << num1 << endl;
+	cout << "小猪B的体重为： " << num2 << endl;
+	cout << "小猪C的体重为： " << num3 << endl;
+
+	
+	if (num1 > num2)
+	{
+		if (num1 > num3)
+		{
+			cout << "小猪A最重" << endl;
+		}
+		else
+		{
+			cout << "小猪C最重" << endl;
+		}
+	}
+	else if (num2 > num3)
+	{
+		cout << "小猪B最重" << endl;
+	}
+	else
+	{
+		cout << "小猪C最重" << endl;
+	}
+
+
+	system("pause");
+	return 0;
