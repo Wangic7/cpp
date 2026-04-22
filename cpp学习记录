@@ -404,5 +404,7 @@ int num = rand() % 100 + 1;//生成随机数1~100
 			cout << "您猜对了" << endl;
 			break;//break 在循环中可以利用该关键字来退出当前循环 注意break的位置
 		}
-
 	}
+
+/////////////do while
+do(循环语句)while(循环条件)；
