@@ -408,3 +408,78 @@ int num = rand() % 100 + 1;//生成随机数1~100
 
 /////////////do while
 do(循环语句)while(循环条件)；
+	int num = 0;
+	do
+	{
+		cout << num << endl;
+		num++;
+	} 
+	while (num < 10);/////与while相比 do...while会先执行一次循环语句
+
+1000以内的水仙花数：
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	//先打印所有的三位数
+	int num = 100;
+	do
+	{
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		a = num / 100;//百位数
+		b = num / 10 % 10;//十位数
+		c = num % 10;//个位数
+		if ( a*a*a + b*b*b + c*c*c == num)
+		{
+			cout << num << endl;
+		}
+		num++;
+	} while (num < 1000);
+}
+	system("pause");
+
+/////////////////////////////////////for循环
+for(起始表达式；条件表达式；末尾循环体){循环语句;}
+
+	for (int a = 0; a < 10; a++)
+	{
+		cout << a << endl;
+	}
+
+逢7过：
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+	for (int num = 1; num <= 100; num++)
+	{
+		if ((num / 10 == 7) || ( num % 10 == 7) ||(num % 7 == 0))///////十位、个位、7的倍数
+		{
+			cout << "敲桌子" << endl;
+		}
+		else
+		{
+			cout << num << endl;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+
+利用嵌套循环打印乘法口诀表：
+
+	//列数*行数=计算结果、、列数<=当前行数
+		for (int i = 1; i <= 9; i++)
+		{
+			for (int j = 1;j <= i;j++)
+			{
+				cout << j << " * " << i << " = " << j*i << "  ";
+			}
+			cout << endl;
+		}
