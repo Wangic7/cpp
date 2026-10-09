@@ -1148,3 +1148,27 @@ int main()
 }
 
 
+
+
+#include<iostream>
+#include<memory>
+using namespace std;
+
+int main()
+{
+	shared_ptr<int> p1 = make_shared<int>(50);
+	
+	weak_ptr<int> w1 = p1;//观察对象，不增加共享所有权计数
+	cout << p1.use_count() << endl;
+
+	if (auto p2 = w1.lock())//尝试获取一个临时的shared_ptr
+	{
+		cout << *p2 << endl;
+	}
+
+	p1.reset();
+
+	cout << w1.expired() << endl;//判断被观察的对象是否已经失效
+	
+	return 0;
+}
