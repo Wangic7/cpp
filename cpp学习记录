@@ -1131,3 +1131,20 @@ int main() {
 	system("pause");
 	return 0;
 }
+
+
+
+#include<iostream>
+using namespace std;
+#include<memory>
+
+int main()
+{
+	unique_ptr<int> p = make_unique<int>(100);//unique_ptr<int>:定义独占管理int对象的智能指针
+											  //make_unique<int>(100):动态创建一个值为100的整数，并交给智能指针管理
+	cout << *p << endl;						  //*p：访问智能指针管理的整数对象
+											  //当p正常离开作用域时，它会自动释放自己管理的动态对象 不需要写delete p
+	return 0;
+}
+
+
