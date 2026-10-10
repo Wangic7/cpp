@@ -1172,3 +1172,62 @@ int main()
 	
 	return 0;
 }
+
+
+
+
+
+#include <iostream>
+#include <utility>
+using namespace std;
+
+class Number {
+public:
+    int* data;
+
+    // 普通构造函数
+    explicit Number(int value) {
+        data = new int(value);
+    }
+
+    // ① 析构函数
+    ~Number() {
+        delete data;
+    }
+
+    // ② 拷贝构造函数
+    Number(const Number& other) {
+        data = other.data
+             ? new int(*other.data)
+             : nullptr;
+    }
+
+    // ③ 拷贝赋值运算符
+    Number& operator=(const Number& other) {
+        if (this != &other) {
+            int* newData = other.data
+                         ? new int(*other.data)
+                         : nullptr;
+
+            delete data;
+            data = newData;
+        }
+        return *this;
+    }
+
+    // ④ 移动构造函数
+    Number(Number&& other) noexcept {
+        data = other.data;
+        other.data = nullptr;
+    }
+
+    // ⑤ 移动赋值运算符
+    Number& operator=(Number&& other) noexcept {
+        if (this != &other) {
+            delete data;
+            data = other.data;
+            other.data = nullptr;
+        }
+        return *this;
+    }
+};
