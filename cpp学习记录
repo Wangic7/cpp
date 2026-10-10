@@ -1325,3 +1325,37 @@ int main()
 
 	return 0;
 }
+
+
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+template <typename T>
+void printVector(const T& value)
+{
+	for (auto ait = value.begin();ait != value.end();++ait)
+	{
+		cout << *ait << " ";
+	}
+	cout << endl;
+}
+
+//const：不允许通过参数修改容器。
+//& ：引用传递，避免复制整个容器。
+//T：使同一个函数模板能够处理不同容器类型。
+
+
+int main()
+{
+	vector<int> a = { 1, 2, 3 };
+	vector<double> b = { 1.5, 2.5, 3.5 };
+
+	printVector(a);
+	printVector(b);
+
+	return 0;
+}
+
+
