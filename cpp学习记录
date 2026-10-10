@@ -1231,3 +1231,47 @@ public:
         return *this;
     }
 };
+
+
+
+
+#include<iostream>
+#include <vector>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+	vector<int> latencies = { 120, 45, 210, 90, 120, 65, 160 };
+
+	int target = 90;
+	int threshold = 100;
+
+	sort(latencies.begin(), latencies.end());
+
+	cout << "Sorted latency(ms):" << " ";
+	for (auto Sit = latencies.begin();Sit != latencies.end();++Sit)
+	{
+		cout << * Sit << " ";
+	}
+	cout << endl;
+
+	auto Fit = find(latencies.begin(), latencies.end(), target);
+	cout << "Target: ";
+	if (Fit != latencies.end())
+	{
+		cout << "Found" << endl;
+	}
+	else {
+		cout << "Not found" << endl;
+	}
+
+	int count = count_if(latencies.begin(), latencies.end(),
+		[threshold](int n){
+			return n > threshold;
+		});
+	cout <<"Slow requests: "<< count << endl;
+
+	return 0;
+}
