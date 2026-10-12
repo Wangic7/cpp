@@ -1681,7 +1681,6 @@ void writeLog(const string& level,const string& message)
 {
 	time_t now = time(nullptr);
 	tm local{};
-	localtime_s(&local, &now);
 	if (localtime_s(&local, &now) != 0)
 	{
 		cout << "时间转换失败" << endl;
