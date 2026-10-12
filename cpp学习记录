@@ -1558,3 +1558,179 @@ int main()
 
 	return 0;
 }
+
+
+
+#include<iostream>
+#include<fstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+
+	ifstream ifs("log.txt");
+	if (! ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return 1;
+	}
+
+	string line;
+	while (getline(ifs, line))
+	{
+		cout << line << endl;
+	}
+
+	return 0;
+}
+
+
+
+#include<iostream>
+#include<fstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	{
+		ofstream ofs("log.txt", ios::app);
+		if (!ofs.is_open())
+		{
+			cout << "文件打开失败" << endl;
+			return 1;
+		}
+		ofs << "Client connected" << endl;//前面有return 1，，，所以无需再写else
+		
+	}
+
+
+	ifstream ifs("log.txt");
+	if (! ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return 1;
+	}
+
+	string line;
+	while (getline(ifs, line))
+	{
+		cout << line << endl;
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+#include<iostream>
+#include<fstream>
+#include <string>
+using namespace std;
+
+void writeLog(const string& level,const string& message)
+{
+	ofstream ofs("log.txt", ios::app);
+	if (!ofs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return;//return;：用于直接结束 void 函数
+		//return 1;：用于返回类型为 int 等兼容类型的函数，通常表示错误状态。
+	}
+	ofs << "["<<level<<"] "<<message << endl;
+}
+
+
+int main()
+{
+	writeLog("INFO","Server start");
+	writeLog("WARNING","Client connected");
+	writeLog("ERROR","Client disconnected");
+
+
+	ifstream ifs("log.txt");
+	if (! ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return 1;
+	}
+
+	string line;
+	while (getline(ifs, line))
+	{
+		cout << line << endl;
+	}
+
+	return 0;
+}
+
+
+增加时间戳：
+#include<iostream>
+#include<fstream>
+#include <string>
+#include<ctime>
+#include<iomanip>
+using namespace std;
+
+void writeLog(const string& level,const string& message)
+{
+	time_t now = time(nullptr);
+	tm local{};
+	localtime_s(&local, &now);
+	if (localtime_s(&local, &now) != 0)
+	{
+		cout << "时间转换失败" << endl;
+		return;
+	}
+
+
+	ofstream ofs("log.txt", ios::app);
+	if (!ofs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return;//return;：用于直接结束 void 函数
+		//return 1;：用于返回类型为 int 等兼容类型的函数，通常表示错误状态。
+	}
+	ofs <<"["<< put_time(&local, "%Y-%m-%d %H:%M:%S")<<"]" << " [" << level << "] " << message << endl;
+
+	if (!ofs)
+	{
+		cout << "文件写入失败" << endl;
+	}
+}
+
+
+int main()
+{
+	writeLog("INFO","Server start");
+	writeLog("WARNING","Client connected");
+	writeLog("ERROR","Client disconnected");
+
+
+	ifstream ifs("log.txt");
+	if (! ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		return 1;
+	}
+
+	string line;
+	while (getline(ifs, line))
+	{
+		cout << line << endl;
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+
