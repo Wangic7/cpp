@@ -1462,3 +1462,52 @@ int main()
 
 	return 0;
 }
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class Task  //Task包含纯虚函数，没有完整实现，因此它是不完整的类型，不能创建对象。它只负责定义接口，由子类提供具体实现。
+{
+public:
+	virtual void execute() = 0;//子类必须实现execute()，否则子类也不能创建对象。Task只规定“所有任务必须有execute能力”，但是不告诉具体怎么执行。
+	virtual ~Task() = default;
+};
+
+class LogTask : public Task
+{
+public:
+	void execute() override
+	{
+		cout << "执行日志任务" << endl;
+	}
+};
+
+class ComputeTask : public Task
+{
+public:
+	void execute() override
+	{
+		cout << "执行计算任务" << endl;
+	}
+};
+
+void runTask(Task& task)
+{
+	task.execute();
+}
+
+
+
+int main()
+{
+	LogTask log;
+	ComputeTask compute;
+
+	runTask(log);
+	runTask(compute);
+
+	return 0;
+}
