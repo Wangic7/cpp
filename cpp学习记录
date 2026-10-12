@@ -1511,3 +1511,50 @@ int main()
 
 	return 0;
 }
+
+
+#include<iostream>
+using namespace std;
+
+class Task
+{
+public:
+	virtual void run() = 0;
+	virtual ~Task() = default;
+
+};
+
+class FileTask : public Task
+{
+public:
+	void run() override 
+	{
+		cout << "执行文件任务" << endl;
+	}
+
+};
+
+class NetworkTask : public Task
+{
+public:
+	void run() override
+	{
+		cout << "执行网络任务" << endl;
+	}
+};
+
+void executeTask(Task& task)
+{
+	task.run();
+}
+
+int main()
+{
+	FileTask file;
+	NetworkTask network;
+
+	executeTask(file);
+	executeTask(network);
+
+	return 0;
+}
