@@ -1814,5 +1814,68 @@ int main()
 
 
 
+#include<unistd.h>
+#include<fcntl.h>
+#include<cstdio>
+#include<iostream>
+using namespace std;
+
+class FdGuard
+{
+    private:
+    int fd_;
+
+    public:
+    //构造函数：接受fd并初始化fd_，负责接受并保存文件描述符
+    FdGuard(int fd) : fd_(fd)//fd：外部传进来的整数。fd_：类的私有成员变量。fd_(fd)：用传入的 fd 初始化成员 fd_。
+    {
+    }
+    
+    //析构函数 负责关闭资源
+    ~FdGuard()
+    {
+        if(fd_ >= 0)
+        {
+            close(fd_);
+        }
+    }
+
+    //禁止复制
+    FdGuard(const FdGuard&) = delete;
+    FdGuard& operator = (const FdGuard&) = delete;
+
+    //获取文件描述符
+    int get() const//它没有任何形参，因此调用时也不能传入参数
+    {
+        return fd_;
+    }
+};//C++类定义结束时必须使用;  而不能只有} 
+
+int main()
+{
+
+    int fd = open("raii_demo.txt",O_WRONLY | O_CREAT | O_TRUNC,0644);
+    if(fd == -1)
+    {
+        perror("open");
+        return 1;
+    }
+
+      FdGuard guard(fd);
+
+    const char msg[] = "RAII works!\n";//定义字符数组
+    ssize_t n = write(guard.get(),msg,sizeof(msg) - 1);// 调用write()，保存返回值
+
+    if(n == -1)//判断写入是否失败
+    {
+        perror("write");
+        return 1;
+    }
+
+    return 0;
+}
+
+
+
 
 
